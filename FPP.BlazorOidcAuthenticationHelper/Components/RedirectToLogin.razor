@@ -1,0 +1,11 @@
+﻿﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using FPP.BlazorOidcAuthenticationHelper.Contracts
+
+@inject IAuthenticationService AuthServices
+
+@code {
+    protected override void OnInitialized()
+    {
+        AuthServices.Login();
+    }
+}

@@ -1,0 +1,53 @@
+﻿@inherits LayoutComponentBase
+
+@using FPP.BlazorOidcAuthenticationHelper.Contracts
+@using FPP.BlazorOidcAuthenticationHelper.Components
+@using Microsoft.AspNetCore.Components.Authorization
+
+@inject IAuthenticationService authService
+
+<AuthenticationStateManager />
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AuthenticationLockView>
+                <Unlocked>
+                    <AuthorizeView>
+                        <Authorized>
+                            <span>@authService.User?.Name</span>
+                            <button @onclick="Logout" class="btn btn-success">Log out</button>
+                        </Authorized>
+                        <NotAuthorized>
+                            <button @onclick="Login" class="btn btn-success">Login</button>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </Unlocked>
+                <Locked>
+                    <span>Locked!</span>
+                </Locked>
+            </AuthenticationLockView>
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private void Login()
+    {
+        authService.Login();
+    }
+
+    private async Task Logout()
+    {
+        await authService.LogoutAsync();
+    }
+}

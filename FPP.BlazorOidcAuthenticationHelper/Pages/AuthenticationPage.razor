@@ -1,0 +1,21 @@
+@page "/authentication/{action}"
+
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+<RemoteAuthenticatorView Action="@Action">
+    <LoggingIn>
+        <span class="logging-in"></span>
+    </LoggingIn>
+    <CompletingLoggingIn>
+        <span class="completing-logging-in"></span>
+    </CompletingLoggingIn>
+    <LogOut>
+        <span class="log-out"></span>
+    </LogOut>
+    <CompletingLogOut>
+        <span class="completing-log-out"></span>
+    </CompletingLogOut>
+    <LogInFailed>
+        <span class="log-in-failed"></span>
+    </LogInFailed>
+</RemoteAuthenticatorView>
